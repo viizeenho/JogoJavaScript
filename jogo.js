@@ -51,6 +51,7 @@ switch (nivel_jogo) {
     }
 
     function game_over(){
+        remove_eventos_baloes();
         alert("Voce não conseguiu estourar todos os baloes")
     }
 
@@ -72,6 +73,7 @@ switch (nivel_jogo) {
     function estourar(e){
         var id_balao = e.id;
         document.getElementById(id_balao).src='imagens/balao_azul_pequeno_estourado.png';
+        document.getElementById(id_balao).setAttribute("onclick","");
         pontuacao(-1);
     }
 
@@ -97,3 +99,14 @@ switch (nivel_jogo) {
             alert('PARABENS VOCÊ GANHOU');
         }
     }
+    function remove_eventos_baloes() {
+        var i = 1; //contado para recuperar balões por id
+        
+        //percorre o lementos de acordo com o id e só irá sair do laço quando não houver correspondência com elemento
+        while(document.getElementById('b'+i)) {
+            //retira o evento onclick do elemnto
+            document.getElementById('b'+i).onclick = '';
+            i++; //faz a iteração da variávei i
+        }
+    }
+    
